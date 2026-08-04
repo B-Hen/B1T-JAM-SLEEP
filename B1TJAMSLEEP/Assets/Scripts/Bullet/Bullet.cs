@@ -3,9 +3,16 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private BulletData bulletData;
+
     private Vector3 direction;
     private float speed;
     private bool moveBullet = false;
+
+    public BulletData BulletData
+    {
+        get { return bulletData; }
+    }
 
     private void Update()
     {

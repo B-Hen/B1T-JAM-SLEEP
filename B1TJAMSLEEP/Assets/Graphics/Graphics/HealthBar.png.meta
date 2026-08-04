@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b2f942dbd446a4d4b993ac4c80d6d43e
+guid: 475e775b9872647429ac6cb7aed4ca3a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 368543389579951487
-    second: slime_0
+      213: -8227546954408941770
+    second: HealthBar_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slime_0
+      name: HealthBar_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 4
-        width: 16
-        height: 9
+        x: 2
+        y: 8
+        width: 12
+        height: 2
       alignment: 9
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f7d3b3c92445d1500800000000000000
-      internalID: 368543389579951487
+      spriteID: 637ab99e2a1e1dd80800000000000000
+      internalID: -8227546954408941770
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ee36031ccfd57854581e7bf5d11e2cf1
+    spriteID: 52d1b4b39c4e989459404e8c6dff5b86
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      slime_0: 368543389579951487
+      HealthBar_0: -8227546954408941770
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

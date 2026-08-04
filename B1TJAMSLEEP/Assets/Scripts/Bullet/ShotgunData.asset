@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcb60269295b9a45b036a8ab4517176, type: 3}
   m_Name: ShotgunData
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  bulletPrefab: {fileID: 1847996522818269962, guid: 0606cd708ef559c4ab57982cf597b702, type: 3}
+  bulletPrefab: {fileID: 3196269665735261519, guid: ec367f51cb71f7a4aa556e9db2e64071, type: 3}
   bulletSpeed: 5
   bulletAmmo: 5
   bulletTime: 3
