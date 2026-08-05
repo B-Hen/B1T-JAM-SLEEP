@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45a3d0c0767bb841a141e707f37b40a, type: 3}
   m_Name: SlimeData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  enemyPrefab: {fileID: 6319250477213577879, guid: 6c9dd6cf519899140ac948388d01757d, type: 3}
-  healthBar: {fileID: 0}
+  enemyPrefab: {fileID: 6791506039661424337, guid: 6c9dd6cf519899140ac948388d01757d, type: 3}
   health: 100
   speed: 10
   attackPower: 10
+  spawnTimer: 5

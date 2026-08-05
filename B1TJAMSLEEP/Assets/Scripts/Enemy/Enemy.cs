@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
             if (x < 0) x = 0;
 
             healthBar.localScale = new Vector3(x, healthBar.localScale.y, healthBar.localScale.z);
+
+            if (healthBar.localScale.x <= 0f) Destroy(gameObject);
         }
     }
 }
