@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   bulletPrefab: {fileID: 3826759758962244293, guid: ad86ee50c961f574da6154a486b8fc3b, type: 3}
   bulletSpeed: 10
-  bulletAmmo: 12
+  bulletAmmo: 100000
   bulletTime: 2

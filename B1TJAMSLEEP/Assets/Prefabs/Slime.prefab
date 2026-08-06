@@ -203,6 +203,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   enemyData: {fileID: 11400000, guid: 14c9c56f0f9a5d14fa5eef6902ebbf1e, type: 2}
   healthBar: {fileID: 6063094146370128274}
+  predictionTime: 0.25
+  randomOffsetRadius: 2
+  separationRadius: 1.5
+  separationStrength: 2
 --- !u!61 &72327837982596228
 BoxCollider2D:
   m_ObjectHideFlags: 0
