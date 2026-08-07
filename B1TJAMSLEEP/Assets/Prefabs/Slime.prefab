@@ -176,7 +176,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 368543389579951487, guid: b2f942dbd446a4d4b993ac4c80d6d43e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -203,10 +203,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   enemyData: {fileID: 11400000, guid: 14c9c56f0f9a5d14fa5eef6902ebbf1e, type: 2}
   healthBar: {fileID: 6063094146370128274}
-  predictionTime: 0.25
-  randomOffsetRadius: 2
-  separationRadius: 1.5
+  separationDistance: 0.5
   separationStrength: 2
+  randomOffsetAmount: 0.05
+  playerStoppingDistance: 0.35
 --- !u!61 &72327837982596228
 BoxCollider2D:
   m_ObjectHideFlags: 0

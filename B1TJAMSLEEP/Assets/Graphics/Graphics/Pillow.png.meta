@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 05eab472d68fff74699b14027b05b21a
+guid: ba07fda93609c6f4eb6f6b44778f7a62
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7377610143194274733
-    second: MagooCat_0
+      213: 6216394963698368553
+    second: Pillow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MagooCat_0
+      name: Pillow_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 16
-        height: 15
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dabd9644659826660800000000000000
-      internalID: 7377610143194274733
+      spriteID: 920c4ca9842154650800000000000000
+      internalID: 6216394963698368553
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 63536f73163d0b546b4ebe79383fae1e
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MagooCat_0: 7377610143194274733
+      Pillow_0: 6216394963698368553
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
