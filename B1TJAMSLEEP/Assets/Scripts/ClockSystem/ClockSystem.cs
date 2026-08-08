@@ -2,25 +2,33 @@ using UnityEngine;
 using TMPro;
 using System;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ClockSystem : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI clock;
     [SerializeField] private RectTransform backgroundCircleMask, topEyeLid, bottomEyeLid, playerHealthBar;
+    [SerializeField] private MaskFollowPlayer maskFollowPlayer;
     [SerializeField] private float totalTime = 240f;
 
     private float timer = 0.0f;
     private int id;
     private Coroutine closeEyeCoroutine;
+    bool finished = false;
 
     private void Start()
     {
-        id = LeanTween.scale(backgroundCircleMask, Vector3.one, totalTime).setEase(LeanTweenType.easeInOutQuad).id;
         CloseEyeAnimation();
+        LeanTween.scale(backgroundCircleMask.gameObject, new Vector3(40f, 40f, 40f), 1f).setEase(LeanTweenType.easeInOutQuad).setOnComplete(() =>
+        {
+            id = LeanTween.scale(backgroundCircleMask, Vector3.one, totalTime).setEase(LeanTweenType.easeInOutQuad).id;
+        });
     }
 
     private void Update()
     {
+        if (finished) return;
+
         float deltaTime = Time.deltaTime;
         timer += deltaTime;
         
@@ -31,11 +39,29 @@ public class ClockSystem : MonoBehaviour
                 clock.text = "03:00 AM";
             }
 
-            if (playerHealthBar.localScale.x > 0) Debug.Log("Player Survived");
+            if (playerHealthBar.localScale.x > 0)
+            {
+                finished = true;
+                maskFollowPlayer.enabled = false;
+                LeanTween.cancel(id);
+                LeanTween.value(
+                    backgroundCircleMask.gameObject,
+                    backgroundCircleMask.anchoredPosition,
+                    new Vector2(160f, 90f),
+                    1f
+                )
+                .setEase(LeanTweenType.easeInOutQuad)
+                .setOnUpdate((Vector2 position) =>
+                {
+                    backgroundCircleMask.anchoredPosition = position;
+                });
+                LeanTween.scale(backgroundCircleMask, Vector3.one, 1f).setEase(LeanTweenType.easeInOutQuad).setOnComplete(() =>
+                {
+                    SceneManager.LoadScene(2);
+                });
 
-            LeanTween.cancel(id);
-
-            return;
+                return;
+            }
         }
 
         DisplayTime();

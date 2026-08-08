@@ -5,9 +5,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed, movement;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private RectTransform healthBar;
+    [SerializeField] private float damageCooldown = 0.75f;
 
     private Vector2 screenBounds;
-    private float playereHalfWidth, playerHalfHeight;
+    private float playereHalfWidth, playerHalfHeight, damageTimer;
 
     private void Start()
     {
@@ -20,6 +21,11 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Movement();
+
+        if(damageTimer > 0f)
+        {
+            damageTimer -= Time.deltaTime;
+        }
     }
 
     private void Movement()
@@ -40,11 +46,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        if (damageTimer > 0f) return;
+
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
         if(enemy != null)
         {
             float x = healthBar.localScale.x - (enemy.EnemyData.attackPower / 100f);
+            damageTimer = damageCooldown;
 
             if (x < 0)
             {

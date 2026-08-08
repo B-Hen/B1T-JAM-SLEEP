@@ -28,6 +28,18 @@ public class PlayerWeapon : MonoBehaviour
         {
             shotsFired = 0;
         }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            if(currentWeapon == Weapon.Pistol)
+            {
+                currentWeapon = Weapon.Shotgun;
+            }
+            else if(currentWeapon == Weapon.Shotgun)
+            {
+                currentWeapon = Weapon.Pistol;
+            }
+        }
     }
 
     private void HandleWeaponUsed()

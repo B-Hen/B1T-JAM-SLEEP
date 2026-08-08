@@ -9,9 +9,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float separationStrength = 0.5f;
     [SerializeField] private float randomOffsetAmount = 0.05f;
     [SerializeField] private float playerStoppingDistance = 0.35f;
+    [SerializeField] private float stoppingTime = 0.75f;
 
     private Transform player;
     private Vector3 randomOffset;
+    private float stoppingTimer;
+    private bool isStopping;
 
     public Transform Player
     {
@@ -33,14 +36,33 @@ public class Enemy : MonoBehaviour
     {
         if (player == null) return;
 
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
-        Vector3 movement = Vector3.zero;
-        if (distanceToPlayer > playerStoppingDistance)
+        if (isStopping)
         {
-            movement += (player.position - transform.position).normalized;
+            stoppingTimer -= Time.deltaTime;
+
+            if (stoppingTimer > 0f)
+            {
+                return;
+            }
+
+            isStopping = false;
         }
 
+        float distanceToPlayer = Vector3.Distance(
+            transform.position,
+            player.position
+        );
+
+        if (distanceToPlayer <= playerStoppingDistance)
+        {
+            isStopping = true;
+            stoppingTimer = stoppingTime;
+
+            return;
+        }
+
+        Vector3 movement = Vector3.zero;
+        movement += (player.position - transform.position).normalized;
         movement += GetSeparationForce();
         movement += randomOffset * 0.1f;
         movement.Normalize();
