@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 05eab472d68fff74699b14027b05b21a
+guid: 7d0a7fe87fa0b804885a7df397a2c35a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7377610143194274733
-    second: MagooCat_0
+      213: -9166819649146136799
+    second: MagooCat-animation_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MagooCat_0
+      name: MagooCat-animation_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dabd9644659826660800000000000000
-      internalID: 7377610143194274733
+      spriteID: 127d294d81ae8c080800000000000000
+      internalID: -9166819649146136799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagooCat-animation_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c7a069d9ab35b442a046fb22b27cd03
+      internalID: -1906544778
       vertices: []
       indices: 
       edges: []
@@ -125,7 +147,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 63536f73163d0b546b4ebe79383fae1e
+    spriteID: 3c98d105717bd754187dbc82843a77f3
     internalID: 0
     vertices: []
     indices: 
@@ -133,9 +155,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      MagooCat_0: 7377610143194274733
+      MagooCat-animation_0: -9166819649146136799
+      MagooCat-animation_1: -1906544778
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

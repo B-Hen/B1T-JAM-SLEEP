@@ -146,6 +146,27 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 27
+      width: 16
+      height: 14
+    spriteID: 10dc7008c5884aa4a85b229c6fe41e68
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 27}
   spriteSheetImportData: []
   tileSetImportData: []
   asepriteLayers:
@@ -161,7 +182,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: MagooCat
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -170,6 +191,15 @@ ScriptedImporter:
         width: 16
         height: 15
       spriteId: a7c6aa5f28796284eb45ebb59f76e549
+    - name: Frame_1
+      frameIndex: 1
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 16
+        height: 14
+      spriteId: 10dc7008c5884aa4a85b229c6fe41e68
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -178,5 +208,5 @@ ScriptedImporter:
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
-  previousTextureSize: {x: 32, y: 32}
+  previousTextureSize: {x: 32, y: 64}
   canvasSize: {x: 16, y: 16}

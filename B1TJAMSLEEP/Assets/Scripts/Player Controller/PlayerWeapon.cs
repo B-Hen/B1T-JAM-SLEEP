@@ -16,10 +16,11 @@ public class PlayerWeapon : MonoBehaviour
 
     private int shotsFired = 0;
     private bool canShoot = true;
+    private float canShootTimer = -1f;
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButton(0))
         {
             HandleWeaponUsed();
         }
@@ -38,6 +39,16 @@ public class PlayerWeapon : MonoBehaviour
             else if(currentWeapon == Weapon.Shotgun)
             {
                 currentWeapon = Weapon.Pistol;
+            }
+        }
+
+        if(canShootTimer > 0)
+        {
+            canShootTimer -= Time.deltaTime;
+
+            if(canShootTimer <= 0)
+            {
+                canShoot = true;
             }
         }
     }
@@ -78,7 +89,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private void HandlePistol()
     {
-        HandleAmmo();
+        //HandleAmmo();
 
         if (!canShoot) return;
 
@@ -86,11 +97,14 @@ public class PlayerWeapon : MonoBehaviour
 
         Bullet bullet = Instantiate(pistolData.bulletPrefab, transform.position, Quaternion.identity);
         bullet.SetData(Input.mousePosition, pistolData.bulletSpeed, pistolData.bulletTime);
+
+        canShootTimer = pistolData.weaponCoolDown;
+        canShoot = false;
     }
 
     private void HandleShotgun()
     {
-        HandleAmmo();
+        //HandleAmmo();
 
         if (!canShoot) return;
 
@@ -103,5 +117,8 @@ public class PlayerWeapon : MonoBehaviour
         shotgunBulletLeft.SetData(Input.mousePosition, pistolData.bulletSpeed, pistolData.bulletTime, -15);
         shotgunBullet.SetData(Input.mousePosition, pistolData.bulletSpeed, pistolData.bulletTime);
         shotgunBulletRight.SetData(Input.mousePosition, pistolData.bulletSpeed, pistolData.bulletTime, 15);
+
+        canShootTimer = shotgunData.weaponCoolDown;
+        canShoot = false;
     }
 }

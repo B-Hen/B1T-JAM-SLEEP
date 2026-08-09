@@ -146,6 +146,27 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 21
+      width: 16
+      height: 8
+    spriteID: 54a4af998ed22bd41ad03af3af925a84
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 21}
   spriteSheetImportData: []
   tileSetImportData: []
   asepriteLayers:
@@ -161,7 +182,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: slime
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -170,6 +191,15 @@ ScriptedImporter:
         width: 16
         height: 9
       spriteId: 7c174c653da241042bad0a707aa9c0f5
+    - name: Frame_1
+      frameIndex: 1
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 4
+        width: 16
+        height: 8
+      spriteId: 54a4af998ed22bd41ad03af3af925a84
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -178,5 +208,5 @@ ScriptedImporter:
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
-  previousTextureSize: {x: 32, y: 32}
+  previousTextureSize: {x: 32, y: 64}
   canvasSize: {x: 16, y: 16}

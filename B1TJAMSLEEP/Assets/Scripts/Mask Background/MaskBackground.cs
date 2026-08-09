@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GoodEnding : MonoBehaviour
+public class MaskBackground : MonoBehaviour
 {
     [SerializeField] private RectTransform backgroundMask;
 

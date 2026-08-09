@@ -4,6 +4,6 @@ using UnityEngine;
 public class WeaponData : ScriptableObject
 {
     public Bullet bulletPrefab;
-    public float bulletSpeed;
+    public float bulletSpeed, weaponCoolDown;
     public int bulletAmmo, bulletTime;
 }

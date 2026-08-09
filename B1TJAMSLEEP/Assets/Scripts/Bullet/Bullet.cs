@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
     {
         if (!moveBullet) return;
 
-        transform.position += direction * speed * Time.deltaTime;
+        transform.position += direction * (speed * Time.deltaTime);
     }
 
     public void SetData(Vector3 targetPosition, float speed, float duration, float angleOffset = 0f)

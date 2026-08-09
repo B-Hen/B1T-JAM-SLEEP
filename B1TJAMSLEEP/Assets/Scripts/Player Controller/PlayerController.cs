@@ -1,20 +1,27 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed, movement;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private RectTransform healthBar;
-    [SerializeField] private float damageCooldown = 0.75f;
+    [SerializeField] private Animator animator;
+    [SerializeField] private RectTransform healthBar, healthBarParent, backgroundMask;
+    [SerializeField] private MaskFollowPlayer maskFollowPlayer;
+    [SerializeField] private float damageCooldown = 1.6f;
 
     private Vector2 screenBounds;
     private float playereHalfWidth, playerHalfHeight, damageTimer;
+    private bool finished = false;
+    private int healthBarAnimationID = -1;
+    private Vector3 originalRotation;
 
     private void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         playereHalfWidth = spriteRenderer.bounds.extents.x;
         playerHalfHeight = spriteRenderer.bounds.extents.y;
+        originalRotation = healthBarParent.localRotation.eulerAngles;
 
     }
 
@@ -25,6 +32,11 @@ public class PlayerController : MonoBehaviour
         if(damageTimer > 0f)
         {
             damageTimer -= Time.deltaTime;
+
+            if(damageTimer <= 0f)
+            {
+                animator.Play("Magoo-Idle");
+            }
         }
     }
 
@@ -46,6 +58,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        if (finished) return;
+
         if (damageTimer > 0f) return;
 
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
@@ -55,13 +69,45 @@ public class PlayerController : MonoBehaviour
             float x = healthBar.localScale.x - (enemy.EnemyData.attackPower / 100f);
             damageTimer = damageCooldown;
 
+            animator.Play("Magoo-damange");
+
             if (x < 0)
             {
-                Debug.Log("Player has died");
                 x = 0f;
             }
 
             healthBar.localScale = new Vector3(x, healthBar.localScale.y, healthBar.localScale.z);
+
+            if (healthBarAnimationID != -1) LeanTween.cancel(healthBarAnimationID);
+            LeanTween.scale(healthBarParent.gameObject, new Vector3(1.05f, 1.05f, 1.05f), 0.35f).setEase(LeanTweenType.easeInOutQuad).setLoopPingPong(1);
+            LeanTween.rotate(healthBarParent.gameObject, new Vector3(0f, 0f, 1.5f), 0.35f).setEase(LeanTweenType.easeInOutQuad).setOnComplete(() =>
+            {
+                LeanTween.rotate(healthBarParent.gameObject, new Vector3(0f, 0f, -1.5f), 0.35f).setEase(LeanTweenType.easeInOutQuad).setOnComplete(() =>
+                {
+                    LeanTween.rotate(healthBarParent.gameObject, originalRotation, 0.35f).setEase(LeanTweenType.easeInOutQuad);
+                });
+            });
+
+            if(healthBar.localScale.x == 0f)
+            {
+                finished = true;
+                maskFollowPlayer.enabled = false;
+                LeanTween.value(
+                    backgroundMask.gameObject,
+                    backgroundMask.anchoredPosition,
+                    new Vector2(160f, 90f),
+                    1f
+                    )
+                    .setEase(LeanTweenType.easeInOutQuad)
+                    .setOnUpdate((Vector2 position) =>
+                    {
+                        backgroundMask.anchoredPosition = position;
+                    });
+                LeanTween.scale(backgroundMask.gameObject, Vector3.one, 1f).setEase(LeanTweenType.easeInOutQuad).setOnComplete(() =>
+                {
+                    SceneManager.LoadScene(3);
+                });
+            }
         }
     }
 }

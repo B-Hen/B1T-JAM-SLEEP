@@ -2393,6 +2393,7 @@ GameObject:
   - component: {fileID: 789529044}
   - component: {fileID: 789529048}
   - component: {fileID: 789529047}
+  - component: {fileID: 789529049}
   m_Layer: 0
   m_Name: MagooCat
   m_TagString: Untagged
@@ -2415,7 +2416,11 @@ MonoBehaviour:
   speed: 5
   movement: 1
   spriteRenderer: {fileID: 789529045}
+  animator: {fileID: 789529049}
   healthBar: {fileID: 2070520341}
+  healthBarParent: {fileID: 63812033}
+  backgroundMask: {fileID: 970410098}
+  maskFollowPlayer: {fileID: 970410102}
   damageCooldown: 0.75
 --- !u!212 &789529045
 SpriteRenderer:
@@ -2530,7 +2535,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.9375}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2553,6 +2558,28 @@ MonoBehaviour:
   pistolData: {fileID: 11400000, guid: 6c801bc823f65a74daf3f8afddea55f9, type: 2}
   shotgunData: {fileID: 11400000, guid: 57bd6ee770158054f9b9f0145841a7da, type: 2}
   currentWeapon: 0
+--- !u!95 &789529049
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789529043}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 55a897ef1769a1748978c086bd3431d2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &813991307
 GameObject:
   m_ObjectHideFlags: 0
@@ -4150,7 +4177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1211529307
 MonoBehaviour:
   m_ObjectHideFlags: 0

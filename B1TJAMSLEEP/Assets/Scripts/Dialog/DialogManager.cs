@@ -29,6 +29,7 @@ public class DialogManager : MonoBehaviour
         DisplaySentence();
 
         LeanTween.scale(background.gameObject, new Vector3(40f, 40f, 40f), 1f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.moveLocalY(continueBtn.gameObject, -15f, 0.5f).setEase(LeanTweenType.easeInOutQuad).setLoopPingPong();
     }
 
     private void Update()
@@ -73,7 +74,7 @@ public class DialogManager : MonoBehaviour
                     Debug.Log("Set next scene");
                 }
 
-                SceneManager.LoadScene(1); //Go to the main game scene
+                SceneManager.LoadScene(nextScene);
             });
 
             return;
