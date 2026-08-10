@@ -909,11 +909,11 @@ MonoBehaviour:
     name: HayZeusCrust
     sentences:
     - I'm so eepy but I need to do one more thing in factorio before we go to bed.
-    - You'll be fine. Here I'll give you my pistol and shotgun. Use both to defend
+    - You'll be fine. Here I'll give you my rifle and shotgun. Use both to defend
       yourself from the scary <i>monsters</i> (You can use the "E" key to switch
       between the two).
-    - You'll be fine princess, I believe in you champ. (Use WASD to move and left
-      mouse button to shoot).
+    - You'll be fine princess, I believe in you champ. (Use WASD to move and hold
+      left mouse button to shoot).
 --- !u!4 &502230804
 Transform:
   m_ObjectHideFlags: 0
@@ -2182,6 +2182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1502633077}
   - component: {fileID: 1502633078}
+  - component: {fileID: 1502633079}
   m_Layer: 0
   m_Name: Dialog Manager
   m_TagString: Untagged
@@ -2220,10 +2221,115 @@ MonoBehaviour:
   characterName: {fileID: 1250344703}
   characterDialog: {fileID: 693878577}
   background: {fileID: 715165867}
-  nextScene: 1
+  nextScene: 3
   joshuaDialogFirst: 1
+  dialogSFXs:
+  - {fileID: 8300000, guid: eeec230b228302e47a9f523243791137, type: 3}
+  - {fileID: 8300000, guid: 6c1cdebd5c49c0b418245601c5821842, type: 3}
+  - {fileID: 8300000, guid: a9d58ff8a5683e64c8ff53e8a08a3543, type: 3}
+  clickSFXs:
+  - {fileID: 8300000, guid: e0d9bc6ff4d3d37409dc3ae9decc1233, type: 3}
+  audioSource: {fileID: 1502633079}
+  frequencyLevel: 5
   joshuaDialog: {fileID: 502230803}
   magooDialog: {fileID: 1229946062}
+--- !u!82 &1502633079
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502633076}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: -2
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1532493728
 GameObject:
   m_ObjectHideFlags: 0

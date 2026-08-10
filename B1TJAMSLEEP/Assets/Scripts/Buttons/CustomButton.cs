@@ -13,6 +13,8 @@ public class CustomButton : MonoBehaviour, IPointerClickHandler, IPointerDownHan
     [SerializeField] private bool quit;
     [SerializeField] private Color light, dark;
     [SerializeField] private RectTransform backgroundMask;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip clickAudio;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -20,6 +22,11 @@ public class CustomButton : MonoBehaviour, IPointerClickHandler, IPointerDownHan
         {
             Application.Quit();
             return;
+        }
+
+        if (clickAudio != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clickAudio, 0.5f);
         }
 
         if(backgroundMask != null)

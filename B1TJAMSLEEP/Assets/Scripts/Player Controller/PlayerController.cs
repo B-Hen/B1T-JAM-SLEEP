@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private RectTransform healthBar, healthBarParent, backgroundMask;
     [SerializeField] private MaskFollowPlayer maskFollowPlayer;
     [SerializeField] private float damageCooldown = 1.6f;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private List<AudioClip> playerHitSFX;
+    [SerializeField] private List<AudioClip> playerDeathSFX;
 
     private Vector2 screenBounds;
     private float playereHalfWidth, playerHalfHeight, damageTimer;
@@ -66,6 +70,8 @@ public class PlayerController : MonoBehaviour
 
         if(enemy != null)
         {
+            if (enemy.StopAllDamage) return;
+
             float x = healthBar.localScale.x - (enemy.EnemyData.attackPower / 100f);
             damageTimer = damageCooldown;
 
@@ -77,6 +83,9 @@ public class PlayerController : MonoBehaviour
             }
 
             healthBar.localScale = new Vector3(x, healthBar.localScale.y, healthBar.localScale.z);
+
+            int index = Random.Range(0, playerHitSFX.Count);
+            audioSource.PlayOneShot(playerHitSFX[index], 0.5f);
 
             if (healthBarAnimationID != -1) LeanTween.cancel(healthBarAnimationID);
             LeanTween.scale(healthBarParent.gameObject, new Vector3(1.05f, 1.05f, 1.05f), 0.35f).setEase(LeanTweenType.easeInOutQuad).setLoopPingPong(1);
@@ -92,6 +101,11 @@ public class PlayerController : MonoBehaviour
             {
                 finished = true;
                 maskFollowPlayer.enabled = false;
+
+                int playerDeathIndex = Random.Range(0, playerDeathSFX.Count);
+                audioSource.Stop();
+                audioSource.PlayOneShot(playerDeathSFX[index], 0.5f);
+
                 LeanTween.value(
                     backgroundMask.gameObject,
                     backgroundMask.anchoredPosition,
@@ -105,7 +119,7 @@ public class PlayerController : MonoBehaviour
                     });
                 LeanTween.scale(backgroundMask.gameObject, Vector3.one, 1f).setEase(LeanTweenType.easeInOutQuad).setOnComplete(() =>
                 {
-                    SceneManager.LoadScene(3);
+                    SceneManager.LoadScene(5);
                 });
             }
         }

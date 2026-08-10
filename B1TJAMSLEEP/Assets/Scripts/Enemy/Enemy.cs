@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -10,11 +12,15 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float randomOffsetAmount = 0.05f;
     [SerializeField] private float playerStoppingDistance = 0.35f;
     [SerializeField] private float stoppingTime = 0.75f;
+    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private List<AudioClip> slimeDieSFX;
 
     private Transform player;
     private Vector3 randomOffset;
     private float stoppingTimer;
-    private bool isStopping;
+    private bool isStopping, stopAllMovement = false;
+    private Coroutine playSFXCoroutine;
 
     public Transform Player
     {
@@ -32,8 +38,15 @@ public class Enemy : MonoBehaviour
         get { return enemyData; }
     }
 
+    public bool StopAllDamage
+    {
+        get { return stopAllMovement; }
+    }
+
     private void Update()
     {
+        if (stopAllMovement) return;
+
         if (player == null) return;
 
         if (isStopping)
@@ -107,6 +120,8 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (stopAllMovement) return;
+
         Bullet bullet = collision.collider.GetComponent<Bullet>();
 
         if (bullet != null)
@@ -119,7 +134,32 @@ public class Enemy : MonoBehaviour
 
             healthBar.localScale = new Vector3(x, healthBar.localScale.y, healthBar.localScale.z);
 
-            if (healthBar.localScale.x <= 0f) Destroy(gameObject);
+            if (healthBar.localScale.x <= 0f)
+            {
+                stopAllMovement = true;
+
+                if(playSFXCoroutine != null)
+                {
+                    StopCoroutine(playSFXCoroutine);
+                    playSFXCoroutine = null;
+                }
+
+                playSFXCoroutine = StartCoroutine(PlaySFXCoroutine());
+            }
         }
+    }
+
+    private IEnumerator PlaySFXCoroutine()
+    {
+        yield return null;
+
+        int index = Random.Range(0, slimeDieSFX.Count);
+        audioSource.PlayOneShot(slimeDieSFX[index], 0.5f);
+        sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0f);
+        healthBar.parent.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(slimeDieSFX[index].length);
+
+        Destroy(gameObject);
     }
 }

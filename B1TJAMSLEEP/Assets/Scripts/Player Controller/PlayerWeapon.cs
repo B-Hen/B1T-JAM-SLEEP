@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
@@ -11,8 +12,10 @@ public enum Weapon
 
 public class PlayerWeapon : MonoBehaviour
 {
-    [SerializeField] WeaponData pistolData, shotgunData;
-    [SerializeField] Weapon currentWeapon = Weapon.Pistol;
+    [SerializeField] private WeaponData pistolData, shotgunData;
+    [SerializeField] private Weapon currentWeapon = Weapon.Pistol;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private List<AudioClip> pistolSFX, shotgunSFX;
 
     private int shotsFired = 0;
     private bool canShoot = true;
@@ -98,6 +101,9 @@ public class PlayerWeapon : MonoBehaviour
         Bullet bullet = Instantiate(pistolData.bulletPrefab, transform.position, Quaternion.identity);
         bullet.SetData(Input.mousePosition, pistolData.bulletSpeed, pistolData.bulletTime);
 
+        int index = Random.Range(0, pistolSFX.Count);
+        audioSource.PlayOneShot(pistolSFX[index], 0.5f);
+
         canShootTimer = pistolData.weaponCoolDown;
         canShoot = false;
     }
@@ -117,6 +123,9 @@ public class PlayerWeapon : MonoBehaviour
         shotgunBulletLeft.SetData(Input.mousePosition, pistolData.bulletSpeed, pistolData.bulletTime, -15);
         shotgunBullet.SetData(Input.mousePosition, pistolData.bulletSpeed, pistolData.bulletTime);
         shotgunBulletRight.SetData(Input.mousePosition, pistolData.bulletSpeed, pistolData.bulletTime, 15);
+
+        int index = Random.Range(0, shotgunSFX.Count);
+        audioSource.PlayOneShot(shotgunSFX[index], 0.5f);
 
         canShootTimer = shotgunData.weaponCoolDown;
         canShoot = false;

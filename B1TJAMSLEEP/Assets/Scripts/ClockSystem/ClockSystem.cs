@@ -57,7 +57,7 @@ public class ClockSystem : MonoBehaviour
                 });
                 LeanTween.scale(backgroundCircleMask, Vector3.one, 1f).setEase(LeanTweenType.easeInOutQuad).setOnComplete(() =>
                 {
-                    SceneManager.LoadScene(2);
+                    SceneManager.LoadScene(4);
                 });
 
                 return;

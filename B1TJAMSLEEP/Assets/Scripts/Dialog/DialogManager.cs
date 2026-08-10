@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private RectTransform background;
     [SerializeField] private int nextScene = -1;
     [SerializeField] private bool joshuaDialogFirst = true;
+    [SerializeField] private List<AudioClip> dialogSFXs, clickSFXs;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private int frequencyLevel = 2;
 
     private Queue<string> sentences;
 
@@ -23,7 +27,13 @@ public class DialogManager : MonoBehaviour
     private void Start()
     {
         sentences = new Queue<string>();
-        continueBtn.onClick.AddListener(() => { DisplaySentence(); });
+        continueBtn.onClick.AddListener(() => 
+        {
+            audioSource.Stop();
+            int index = Random.Range(0, clickSFXs.Count);
+            audioSource.PlayOneShot(clickSFXs[index], 0.35f);
+            DisplaySentence();
+        });
 
         StartDialoug();
         DisplaySentence();
@@ -36,6 +46,9 @@ public class DialogManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Return))
         {
+            audioSource.Stop();
+            int index = Random.Range(0, clickSFXs.Count);
+            audioSource.PlayOneShot(clickSFXs[index], 0.35f);
             DisplaySentence();
         }
     }
@@ -111,13 +124,54 @@ public class DialogManager : MonoBehaviour
         StartCoroutine(AnimateDialog(sentence));
     }
 
+    //Dialog randomization from: https://youtu.be/P3FcXHEai_E?si=tlvUqZkODx9OnpeT
+    private void PlayDialogSound(int currentDisplayCharacterCount, char currentCharacter)
+    {
+        //audioSource.Stop();
+        AudioClip soundClip = null;
+
+        if(currentDisplayCharacterCount % 10 == 0)
+        {
+            //Debug.Log(currentDisplayCharacterCount);
+            //audioSource.Stop();
+            //audioSource.pitch = Random.Range(0.5f, 2f);
+            //int index = Random.Range(0, dialogSFXs.Count);
+            //audioSource.PlayOneShot(dialogSFXs[index], 0.5f);
+
+            int hashCode = currentCharacter.GetHashCode();
+            int predictableindex = hashCode % dialogSFXs.Count;
+            soundClip = dialogSFXs[predictableindex];
+
+            int minPitch = (int)(1.5f * 100);
+            int maxPitch = (int)(2f * 100);
+            int pitchRangeInt = maxPitch - minPitch;
+
+            if(pitchRangeInt != 0)
+            {
+                int predictablePitchInt = (hashCode % pitchRangeInt) + minPitch;
+                float predictablePitch = predictablePitchInt / 100f;
+                audioSource.pitch = predictablePitch;
+            }
+            else
+            {
+                audioSource.pitch = minPitch;
+            }
+
+            audioSource.PlayOneShot(dialogSFXs[predictableindex], 0.15f);
+        }
+    }
+
     private IEnumerator AnimateDialog(string sentence)
     {
         characterDialog.text = "";
         yield return null;
 
+        int characterCount = 0;
+
         foreach(char letter in sentence.ToCharArray())
         {
+            PlayDialogSound(characterCount, letter);
+            characterCount++;
             characterDialog.text += letter;
             yield return new WaitForSeconds(0.01f);
         }
