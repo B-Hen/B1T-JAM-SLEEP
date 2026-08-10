@@ -1067,8 +1067,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Created By: Magoo\nsfx By: Ratthew\nFont By: Krolesz94\nFont link: https://fontstruct.com/fontstructions.show/2060820\nBackground
-    Music: 8 Bit Nostalgia By David Renda\nhttps://www.fesliyanstudios.com/royalty-free-music/download/8-bit-nostalgia/2289\nSpeaical
+  m_text: "Created By: Magoo\nsfx By: Ratthew\nFont By: Krolesz94\nFont link: https://fontstruct.com/fontstructions/show/2060820\nBackground
+    Music: 8 Bit Nostalgia By David Renda\nhttps://www.fesliyanstudios.com/royalty-free-music/download/8-bit-nostalgia/2289\nSpecial
     Thanks: HayZeusCrust\n "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a45db53a71efe5247bce12b48d4c0fc8, type: 2}
